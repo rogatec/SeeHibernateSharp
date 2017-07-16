@@ -1,17 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using log4net;
+using SeeHibernateSharp.Libraries.Logging;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace SeeHibernateSharp
 {
@@ -23,6 +12,14 @@ namespace SeeHibernateSharp
         public MainWindow()
         {
             InitializeComponent();
+
+            // Test
+            ILog log = LogManager.GetLogger("hibernating");
+            ILogger nlogAdapter = new Log4NetAdapter(log);
+
+            var hibernateOutput = Hibernate.TestApp.Main();
+
+            log.Debug(hibernateOutput);            
         }
     }
 }
